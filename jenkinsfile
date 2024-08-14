@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/Brozjay1/jenkins-py-app.git', branch: 'master'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t python-app .'
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d -p 8081:80 my-python-app'
+            }
+        }
+	stage('Clone Repository') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: '1bb7d20b-5c59-458f-b5e5-88464d6691da', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+           sh 'git clone -b master https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Brozjay1/jenkins-py-app.git'
+        }
+    }
+}
+
