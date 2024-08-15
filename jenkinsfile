@@ -20,7 +20,7 @@ ipeline {
 	stage('Clone Repository') {
     steps {
         withCredentials([sshUserPrivateKey(credentialsId: 'a9791705-57b6-47f6-be28-f1a09d21988f', keyFileVariable: 'practisekey')]) {
-            sh 'git clone -b main https://github.com/Brozjay1/jenkins-py-app.git'
+            sh 'git clone -b master https://github.com/Brozjay1/jenkins-py-app.git'
         }
     }
 }
