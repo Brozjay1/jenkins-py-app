@@ -1,4 +1,4 @@
-pipeline {
+ipeline {
     agent any
 
     stages {
@@ -19,9 +19,10 @@ pipeline {
         }
 	stage('Clone Repository') {
     steps {
-        withCredentials([usernamePassword(credentialsId: '1bb7d20b-5c59-458f-b5e5-88464d6691da', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-           sh 'git clone -b master https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Brozjay1/jenkins-py-app.git'
+        withCredentials([sshUserPrivateKey(credentialsId: 'a9791705-57b6-47f6-be28-f1a09d21988f', keyFileVariable: 'practisekey')]) {
+            sh 'git clone -b main https://github.com/Brozjay1/jenkins-py-app.git'
         }
     }
 }
+
 
